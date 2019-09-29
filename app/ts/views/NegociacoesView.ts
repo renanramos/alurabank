@@ -1,18 +1,5 @@
-class NegociacoesVew {
+class NegociacoesVew extends View<Negociacoes> {
 
-    private _element: Element;
-
-    constructor(seletor: string) {
-        this._element = document.querySelector(seletor);
-    }
-
-    update(model: Negociacoes): void {        
-
-        if (model.paraArray().length > 0) {
-            this._element.innerHTML = this.template(model);
-        }
-
-    }
 
     template(model: Negociacoes): string {  
         return `

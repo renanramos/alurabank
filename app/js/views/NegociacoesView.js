@@ -1,12 +1,4 @@
-class NegociacoesVew {
-    constructor(seletor) {
-        this._element = document.querySelector(seletor);
-    }
-    update(model) {
-        if (model.paraArray().length > 0) {
-            this._element.innerHTML = this.template(model);
-        }
-    }
+class NegociacoesVew extends View {
     template(model) {
         return `
             <table class="table table-hover table-bordered">
