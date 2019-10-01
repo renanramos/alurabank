@@ -1,5 +1,6 @@
 import { NegociacoesVew, MensageView } from "../views/index";
 import { Negociacoes, Negociacao } from "../models/index";
+import { NegociacaoEnum } from './NegociacaoEnum';
 
 export class NegociacaoController {
 
@@ -17,12 +18,18 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
     }
 
-    adiciona(event: Event) {       
+    adiciona(event: Event) {
 
         event.preventDefault();
 
+        let data = new Date(this._inputData.val().replace(/-/g, ','));
+
+        if (!this._ehDiaUtil(data)) {
+            this._mensagemView.update('Somente negociações em dias úteis, por favor!');
+        }
+
         const negociacao = new Negociacao(
-            new Date(this._inputData.val().replace(/-/g, ',')),
+            data,
             parseInt(this._inputQuantidade.val()),
             parseFloat(this._inputValor.val())
         )
@@ -33,6 +40,10 @@ export class NegociacaoController {
 
         this._mensagemView.update('Negociacao adicionada com sucesso!');
 
+    }
+
+    private _ehDiaUtil(data: Date) {
+        return data.getDay() != NegociacaoEnum.SABADO && data.getDay() != NegociacaoEnum.DOMINGO;
     }
 
 }
