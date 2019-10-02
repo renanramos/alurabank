@@ -45,6 +45,26 @@ System.register(["../views/index", "../models/index", "./NegociacaoEnum", "./../
                 _ehDiaUtil(data) {
                     return data.getDay() != NegociacaoEnum_1.NegociacaoEnum.SABADO && data.getDay() != NegociacaoEnum_1.NegociacaoEnum.DOMINGO;
                 }
+                importaDados() {
+                    function isOk(res) {
+                        if (res.ok) {
+                            return res;
+                        }
+                        else {
+                            throw new Error(res.statusText);
+                        }
+                    }
+                    fetch('http://localhost:8080/dados')
+                        .then(res => isOk(res))
+                        .then(res => res.json())
+                        .then((dados) => {
+                        dados
+                            .map(dado => new index_2.Negociacao(new Date(), dado.vezes, dado.montante))
+                            .forEach(negociacao => this._negociacoes.adiciona(negociacao));
+                        this._negociacoesView.update(this._negociacoes);
+                    })
+                        .catch(err => console.log(err.message));
+                }
             };
             __decorate([
                 index_3.domInject('#data')
