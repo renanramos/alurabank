@@ -1,12 +1,6 @@
-System.register(["../views/index", "../models/index", "./NegociacaoEnum", "./../helpers/decorators/index"], function (exports_1, context_1) {
+System.register(["../views/index", "../models/index", "./NegociacaoEnum"], function (exports_1, context_1) {
     "use strict";
-    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-        return c > 3 && r && Object.defineProperty(target, key, r), r;
-    };
-    var index_1, index_2, NegociacaoEnum_1, index_3, NegociacaoController;
+    var index_1, index_2, NegociacaoEnum_1, NegociacaoController;
     var __moduleName = context_1 && context_1.id;
     return {
         setters: [
@@ -18,9 +12,6 @@ System.register(["../views/index", "../models/index", "./NegociacaoEnum", "./../
             },
             function (NegociacaoEnum_1_1) {
                 NegociacaoEnum_1 = NegociacaoEnum_1_1;
-            },
-            function (index_3_1) {
-                index_3 = index_3_1;
             }
         ],
         execute: function () {
@@ -49,9 +40,6 @@ System.register(["../views/index", "../models/index", "./NegociacaoEnum", "./../
                     return data.getDay() != NegociacaoEnum_1.NegociacaoEnum.SABADO && data.getDay() != NegociacaoEnum_1.NegociacaoEnum.DOMINGO;
                 }
             };
-            __decorate([
-                index_3.logarTempoDeExecucao()
-            ], NegociacaoController.prototype, "adiciona", null);
             exports_1("NegociacaoController", NegociacaoController);
         }
     };
