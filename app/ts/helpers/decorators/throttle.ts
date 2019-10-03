@@ -5,7 +5,7 @@ export function throttle(milisegundos = 500){
 
         let timer = 0;
 
-        descriptor.value = function(...args: any){
+        descriptor.value = function(...args: any[]){
 
             if(event) event.preventDefault();
             
