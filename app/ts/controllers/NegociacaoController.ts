@@ -28,7 +28,7 @@ export class NegociacaoController {
     }
 
     @throttle()
-    adiciona(event: Event) {
+    adiciona() {
 
         let data = new Date(this._inputData.val().replace(/-/g, ','));
 
@@ -49,7 +49,6 @@ export class NegociacaoController {
         this._negociacoesView.update(this._negociacoes);
 
         this._mensagemView.update('Negociacao adicionada com sucesso!');
-
     }
 
     private _ehDiaUtil(data: Date) {
