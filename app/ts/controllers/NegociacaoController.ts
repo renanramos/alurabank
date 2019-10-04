@@ -56,21 +56,16 @@ export class NegociacaoController {
     @throttle()
     importaDados() {
 
-        function isOk(res: Response) {
+        this._negociacaoService.obterNegociacoes(res => {
             if (res.ok) {
                 return res;
             } else {
                 throw new Error(res.statusText);
             }
-        }
-
-        this._negociacaoService.obterNegociacoes(isOk)
-            .then((negociacoes: any) => {
-                negociacoes.forEach((negociacao: any) => this._negociacoes.adiciona(negociacao))
-                this._negociacoesView.update(negociacoes);
-            });
-
-
+        })
+        .then((negociacoes: any) => {
+            negociacoes.forEach((negociacao: any) => this._negociacoes.adiciona(negociacao))
+            this._negociacoesView.update(negociacoes);
+        });
     }
-
 }

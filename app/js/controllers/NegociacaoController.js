@@ -50,15 +50,14 @@ System.register(["../views/index", "../models/index", "./NegociacaoEnum", "./../
                     return data.getDay() != NegociacaoEnum_1.NegociacaoEnum.SABADO && data.getDay() != NegociacaoEnum_1.NegociacaoEnum.DOMINGO;
                 }
                 importaDados() {
-                    function isOk(res) {
+                    this._negociacaoService.obterNegociacoes(res => {
                         if (res.ok) {
                             return res;
                         }
                         else {
                             throw new Error(res.statusText);
                         }
-                    }
-                    this._negociacaoService.obterNegociacoes(isOk)
+                    })
                         .then((negociacoes) => {
                         negociacoes.forEach((negociacao) => this._negociacoes.adiciona(negociacao));
                         this._negociacoesView.update(negociacoes);
