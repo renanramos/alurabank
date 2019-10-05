@@ -65,9 +65,18 @@ export class NegociacaoController {
                 throw new Error(res.statusText);
             }
         })
-        .then((negociacoes: any) => {
-            negociacoes.forEach((negociacao: any) => this._negociacoes.adiciona(negociacao))
-            this._negociacoesView.update(negociacoes);
+        .then((negociacoesParaImportar: any) => {
+
+            const negociacoesJaImportada = this._negociacoes.paraArray();
+
+            negociacoesParaImportar
+            .filter((negociacao: Negociacao) => 
+                    !negociacoesJaImportada.some(jaImportada =>
+                        negociacao.ehIgual(jaImportada)))
+                    .forEach((negociacao: Negociacao) => 
+                        this._negociacoes.adiciona(negociacao));
+
+            this._negociacoesView.update(this._negociacoes);
         });
     }
 }
